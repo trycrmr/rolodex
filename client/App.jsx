@@ -3,6 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { pleaseToggleBool } from "./appSlice";
 import { Counter } from "./Counter.jsx";
+import PageLayout from "./PageLayout.jsx";
 
 const App = (props) => {
   // console.info(pleaseToggleBool);
@@ -11,6 +12,7 @@ const App = (props) => {
   // console.info(currentBool);
   return (
     <div>
+      <PageLayout></PageLayout>
       <p>wee bloop blop woop</p>
       <Counter />
     </div>
