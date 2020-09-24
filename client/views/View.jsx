@@ -1,8 +1,16 @@
 import React from "react";
-import PageLayout from "../PageLayout";
+import ContactView from "../ContactView";
+import { useRouteMatch, useParams } from "react-router-dom";
 
 const View = () => {
-  return <>View</>;
+  let { contactId } = useParams();
+
+  return (
+    <>
+      {contactId}
+      <ContactView />
+    </>
+  );
 };
 
 export default View;

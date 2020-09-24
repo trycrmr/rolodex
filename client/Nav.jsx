@@ -35,7 +35,7 @@ const Nav = () => {
               <Add />
             </PageLayout>
           </Route>
-          <Route path="/view">
+          <Route path="/view/:contactId">
             <PageLayout>
               <View />
             </PageLayout>

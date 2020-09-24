@@ -5,22 +5,30 @@ const ContactList = (props) => {
   return (
     <>
       <Box>
-        <Columns breakpoint="tablet">
-          <Columns.Column>
-            <ContactCard />
-          </Columns.Column>
-          <Columns.Column>
-            <ContactCard />
-          </Columns.Column>
-        </Columns>
-        <Columns breakpoint="tablet">
-          <Columns.Column>
-            <ContactCard />
-          </Columns.Column>
-          <Columns.Column>
-            <ContactCard />
-          </Columns.Column>
-        </Columns>
+        {props.data.map((thisContact, idx, origArr) => {
+          if (idx % 2) {
+            return null;
+          } else {
+            {
+              /* need better keys than these keys */
+            }
+            return (
+              <Columns breakpoint="tablet" key={Math.random()}>
+                <Columns.Column key={idx}>
+                  <ContactCard data={thisContact} key={thisContact.id} />
+                </Columns.Column>
+                {origArr[idx + 1] ? (
+                  <Columns.Column key={idx + 1}>
+                    <ContactCard
+                      data={origArr[idx + 1]}
+                      key={origArr[idx + 1].id}
+                    />
+                  </Columns.Column>
+                ) : null}
+              </Columns>
+            );
+          }
+        })}
       </Box>
     </>
   );
