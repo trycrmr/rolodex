@@ -9,10 +9,17 @@ import {
   Media,
   Content,
   Button,
+  Input,
 } from "react-bulma-components";
-import { Link } from "react-router-dom";
+
+// Warning: Failed prop type: Invalid prop `type` of value `phone` supplied to `Input`, expected one of ["text","email","tel","password","number","search","color","date","time","datetime-local"].
 
 const ContactEdit = (props) => {
+  const inputMapping = {
+    phone: "tel",
+    name: "text",
+    email: "email",
+  };
   return (
     <>
       <Box style={{ minWidth: "fit-content" }}>
@@ -33,6 +40,7 @@ const ContactEdit = (props) => {
                   {Object.entries(props.data).map((thisPair) => {
                     const [key, value] = thisPair;
                     const exclusions = ["name", "id"];
+
                     if (exclusions.includes(key))
                       return (
                         <div
@@ -42,10 +50,16 @@ const ContactEdit = (props) => {
                       );
                     return (
                       <div key={`key:${key}:${value}`}>
-                        <Form.Label>{key}</Form.Label>
-                        <Form.Field disabled={true} value={value}>
-                          {value}
-                        </Form.Field>
+                        <Form.Control>
+                          <Form.Field disabled={false} value={value}>
+                            <Form.Label>{key}</Form.Label>
+                            <Form.Input
+                              type={inputMapping[key]}
+                              placeholder={key}
+                              value={value}
+                            />
+                          </Form.Field>
+                        </Form.Control>
                       </div>
                     );
                   })}

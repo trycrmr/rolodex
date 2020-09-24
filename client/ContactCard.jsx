@@ -1,8 +1,6 @@
 import React from "react";
 import { Card, Media, Heading, Content, Image } from "react-bulma-components";
 import { Link } from "react-router-dom";
-import View from "./views/View";
-import Edit from "./views/Edit";
 
 const ContactCard = (props) => {
   return (
