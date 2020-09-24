@@ -15,7 +15,8 @@ module.exports = {
     publicPath: "/dist/",
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    modules: ["node_modules", "client"],
+    extensions: [".js", ".jsx", ".sass", ".scss", ".css"],
     alias: {
       "react-dom": "@hot-loader/react-dom",
     },
@@ -34,7 +35,7 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         use: [
           // Creates `style` nodes from JS strings
           "style-loader",

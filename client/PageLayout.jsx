@@ -1,5 +1,13 @@
 import React from "react";
-import { Navbar, Footer, Container, Content } from "react-bulma-components";
+import Filter from "./Filter.jsx";
+import ContactList from "./ContactList.jsx";
+import {
+  Navbar,
+  Footer,
+  Container,
+  Content,
+  Section,
+} from "react-bulma-components";
 
 function PageLayout() {
   return (
@@ -17,7 +25,12 @@ function PageLayout() {
           </Navbar.Container>
         </Navbar.Menu>
       </Navbar>
-      <Container>Container</Container>
+      <Container>
+        <Section>
+          {/* <Filter /> */}
+          <ContactList />
+        </Section>
+      </Container>
       <Footer>
         <Container>
           <Content style={{ textAlign: "center" }}>
