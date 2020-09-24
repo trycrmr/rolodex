@@ -11,6 +11,7 @@ import {
   Button,
   Input,
 } from "react-bulma-components";
+import ContactForm from "./ContactForm";
 
 // Warning: Failed prop type: Invalid prop `type` of value `phone` supplied to `Input`, expected one of ["text","email","tel","password","number","search","color","date","time","datetime-local"].
 
@@ -24,7 +25,6 @@ const ContactEdit = (props) => {
     <>
       <Box style={{ minWidth: "fit-content" }}>
         <Section>
-          <Button>Save Contact</Button>
           <Hero>
             <Heading style={{ textAlign: "center" }}>{props.data.name}</Heading>
             <Media>
@@ -36,34 +36,7 @@ const ContactEdit = (props) => {
                 />
               </Media.Item>
               <Media.Item position="right" style={{ minWidth: "fit-content" }}>
-                <Content style={{ overflowX: "auto" }}>
-                  {Object.entries(props.data).map((thisPair) => {
-                    const [key, value] = thisPair;
-                    const exclusions = ["name", "id"];
-
-                    if (exclusions.includes(key))
-                      return (
-                        <div
-                          style={{ display: "none" }}
-                          key={`hidden:${key}`}
-                        ></div>
-                      );
-                    return (
-                      <div key={`key:${key}:${value}`}>
-                        <Form.Control>
-                          <Form.Field disabled={false} value={value}>
-                            <Form.Label>{key}</Form.Label>
-                            <Form.Input
-                              type={inputMapping[key]}
-                              placeholder={key}
-                              value={value}
-                            />
-                          </Form.Field>
-                        </Form.Control>
-                      </div>
-                    );
-                  })}
-                </Content>
+                <ContactForm data={props.data} />
               </Media.Item>
             </Media>
           </Hero>
