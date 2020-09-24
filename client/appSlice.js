@@ -9,8 +9,8 @@ export const appSlice = createSlice({
     count: 0,
   },
   reducers: {
-    addContact: (state, action) => {
-      state.data.contacts = [...state.data.contacts, action.payload];
+    updateContacts: (state, action) => {
+      state.data.contacts = action.payload;
     },
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -29,7 +29,7 @@ export const appSlice = createSlice({
 });
 
 export const {
-  addContact,
+  updateContacts,
   increment,
   decrement,
   incrementByAmount,
