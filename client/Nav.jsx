@@ -1,0 +1,45 @@
+import React from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Edit from "./views/Edit.jsx";
+import View from "./views/View.jsx";
+import Home from "./views/Home.jsx";
+import Add from "./views/Add.jsx";
+import { Navbar } from "react-bulma-components";
+const Nav = () => {
+  return (
+    <>
+      <Router>
+        <Navbar>
+          <Navbar.Brand>
+            <Navbar.Item renderAs="div">
+              <Link to="/">Rolodex</Link>
+            </Navbar.Item>
+          </Navbar.Brand>
+          <Navbar.Container position="end">
+            <Navbar.Item renderAs="div">
+              <Link to="/add">Add Contact</Link>
+            </Navbar.Item>{" "}
+          </Navbar.Container>
+        </Navbar>
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/edit">
+            <Edit />
+          </Route>
+          <Route path="/add">
+            <Add />
+          </Route>
+          <Route path="/view">
+            <View />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </Router>
+    </>
+  );
+};
+
+export default Nav;

@@ -1,30 +1,11 @@
 import React from "react";
 import Filter from "./Filter.jsx";
 import ContactList from "./ContactList.jsx";
-import {
-  Navbar,
-  Footer,
-  Container,
-  Content,
-  Section,
-} from "react-bulma-components";
+import { Footer, Container, Content, Section } from "react-bulma-components";
 
 function PageLayout() {
   return (
     <>
-      <Navbar>
-        <Navbar.Brand>
-          <Navbar.Item renderAs="a" href="/">
-            Rolodex
-          </Navbar.Item>
-          <Navbar.Burger />
-        </Navbar.Brand>
-        <Navbar.Menu>
-          <Navbar.Container position="end">
-            <Navbar.Item href="#">At the end</Navbar.Item>
-          </Navbar.Container>
-        </Navbar.Menu>
-      </Navbar>
       <Container>
         <Section>
           {/* <Filter /> */}

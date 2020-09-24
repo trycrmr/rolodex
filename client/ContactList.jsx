@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Columns, Heading } from "react-bulma-components";
+import { Box, Columns } from "react-bulma-components";
 import ContactCard from "./ContactCard.jsx";
 const ContactList = (props) => {
   return (
