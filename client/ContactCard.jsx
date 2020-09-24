@@ -33,7 +33,7 @@ const ContactCard = (props) => {
             <Link to={`/view/${props.data.id}`}>View</Link>
           </Card.Footer.Item>
           <Card.Footer.Item renderAs="div" href="/edit">
-            <Link to={"/edit"}>Edit</Link>
+            <Link to={`/edit/${props.data.id}`}>Edit</Link>
           </Card.Footer.Item>
           <Card.Footer.Item
             renderAs="a"

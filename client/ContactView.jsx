@@ -8,13 +8,19 @@ import {
   Heading,
   Media,
   Content,
+  Button,
 } from "react-bulma-components";
+import {Link} from "react-router-dom"
 
 const ContactView = (props) => {
   return (
     <>
       <Box style={{ minWidth: "fit-content" }}>
         <Section>
+          <Link to={`/edit/${props.data.id}`}>
+            <Button>Update Contact</Button>
+          </Link>
+
           <Hero>
             <Heading style={{ textAlign: "center" }}>{props.data.name}</Heading>
             <Media>

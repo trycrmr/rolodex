@@ -25,12 +25,17 @@ const Nav = () => {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/edit">
+          <Route path="/edit/:contactId">
             <PageLayout>
               <Edit />
             </PageLayout>
           </Route>
           <Route path="/add">
+            <PageLayout>
+              <Add />
+            </PageLayout>
+          </Route>
+          <Route path="/delete/:contactId">
             <PageLayout>
               <Add />
             </PageLayout>
