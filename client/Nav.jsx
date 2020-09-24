@@ -5,6 +5,7 @@ import View from "./views/View.jsx";
 import Home from "./views/Home.jsx";
 import Add from "./views/Add.jsx";
 import { Navbar } from "react-bulma-components";
+import PageLayout from "./PageLayout";
 const Nav = () => {
   return (
     <>
@@ -25,16 +26,24 @@ const Nav = () => {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/edit">
-            <Edit />
+            <PageLayout>
+              <Edit />
+            </PageLayout>
           </Route>
           <Route path="/add">
-            <Add />
+            <PageLayout>
+              <Add />
+            </PageLayout>
           </Route>
           <Route path="/view">
-            <View />
+            <PageLayout>
+              <View />
+            </PageLayout>
           </Route>
           <Route path="/">
-            <Home />
+            <PageLayout>
+              <Home />
+            </PageLayout>
           </Route>
         </Switch>
       </Router>

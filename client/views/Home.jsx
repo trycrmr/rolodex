@@ -2,11 +2,7 @@ import React from "react";
 import PageLayout from "../PageLayout";
 
 const Home = () => {
-  return (
-    <>
-      <PageLayout />
-    </>
-  );
+  return <>Home</>;
 };
 
 export default Home;

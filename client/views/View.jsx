@@ -2,11 +2,7 @@ import React from "react";
 import PageLayout from "../PageLayout";
 
 const View = () => {
-  return (
-    <>
-      <PageLayout />
-    </>
-  );
+  return <>View</>;
 };
 
 export default View;
