@@ -1,6 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-const get = axios.get;
 
 export const appSlice = createSlice({
   name: "app",
