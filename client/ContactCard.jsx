@@ -5,8 +5,7 @@ import { Link } from "react-router-dom";
 const ContactCard = (props) => {
   return (
     <>
-      <Card>
-        <Card.Header></Card.Header>
+      <Card style={{ maxWidth: "500px", margin: "auto" }}>
         <Card.Content>
           <Media position="right">
             <Media.Item renderAs="figure" position="left">

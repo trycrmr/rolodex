@@ -20,9 +20,10 @@ const ContactForm = (props) => {
     hasError: false,
     error: null,
     validations: {
-      // I couldn't think of a form validation library off the top of my head so I wrote this. A battle-tested library should be used for this though so the edge cases of isEmail() or whatever form field are accounted for.
+      // I couldn't think of a form validation library off the top of my head so I wrote this. In production a battle-tested library should be used for this though so the edge cases of isEmail() or whatever form field are more likely to be accounted for.
       name: {
         tests: [
+          // Validation tests are written to accommodate multiple validation functions per form field if need be (most likely)
           (name) => {
             return name.trim().length > 0 ? true : false;
           },
@@ -63,6 +64,7 @@ const ContactForm = (props) => {
   };
   const [state, setState] = useState(initialState);
   const inputTypeMapping = {
+    // Used for dynamically determining what keys in the contact object should map to what type of input form fields.
     // Future possible mappings ["text","email","tel","password","number","search","color","date","time","datetime-local"]
     phone: "tel",
     name: "text",
@@ -74,18 +76,17 @@ const ContactForm = (props) => {
   };
 
   const validateSubmission = (e) => {
+    // Rolled this client side
     let thisSubmission = { ...state.newData };
     let verdict = Object.keys(thisSubmission)
       .map((thisKey) => {
+        // For each form field...
         return state.validations[thisKey].tests
           .map((thisValidation) => {
+            // ...run all the validation functions with the user input as the argument. ...
             const thisVerdict = thisValidation(thisSubmission[thisKey]);
-            console.info(
-              thisVerdict,
-              state.validations[thisKey].verdict,
-              thisVerdict !== state.validations[thisKey].verdict
-            );
             if (thisVerdict !== state.validations[thisKey].verdict) {
+              // ...If the verdict has changed since the initial load or last attempted submission then update the state. This will show the proper message to the user for guidance. ...
               setState({
                 ...state,
                 validations: {
@@ -100,15 +101,16 @@ const ContactForm = (props) => {
             return thisVerdict;
           })
           .every((thisVerdictResult) => {
-            // Checks that all validation functions for a certain field return true
+            // ... Check that all validation functions for a certain field return true. Then...
             return thisVerdictResult ? true : false;
           });
       })
       .every((thisVerdictResult) => {
-        // Checks that all validations functions for ALL fields return true
+        // ...check that all validation functions for ALL fields return true
         return thisVerdictResult ? true : false;
       });
     if (verdict) {
+      // If all the validations for all the form fields pass then initiate the network call to save/update the contact.
       setState({
         ...state,
         isSaving: true,
@@ -117,12 +119,16 @@ const ContactForm = (props) => {
         error: null,
       });
       if (!props.data) {
+        // Cheap way of determining whether this contact form is adding a new user or updating an existing user. If no data is passed it means it's assing a new user.
         axios
-          .post(`/contacts`, state.newData)
+          .post(`/contacts`, state.newData) // Before deploying this application to production more work should be done, either server-side or client-side, to sanitize this user input before it's persisted in a data store.
           .then((result) => {
             dispatch(updateContact(result.data));
             setState({
+              // Completely replaces the state with the new contact info that is persisted server-side. This will also disable the "Save Contact" button because the data & newData objects are the same.
               ...state,
+              data: result.data,
+              newData: result.data,
               isSaving: false,
               hasSaved: true,
               hasError: false,
@@ -139,12 +145,15 @@ const ContactForm = (props) => {
             });
           });
       } else {
-        axios
-          .put(`/contacts/${state.newData.id}`, state.newData)
+        axios // Performing the network call in the component 1) because the data should persist server side before indicating to the user it has saved/updated, and 2) so the interface will adjust accordingly given the state of the network call represented in the component state without having to prop drill from the redux app state.
+          .put(`/contacts/${state.newData.id}`, state.newData) // Before deploying this application to production more work should be done, either server-side or client-side, to sanitize this user input before it's persisted in a data store.
           .then((result) => {
             dispatch(updateContact(result.data));
+            // Completely replaces the state with the new contact info that is persisted. This will also disable the "Save Contact" button because the data & newData objects are the same.
             setState({
               ...state,
+              data: result.data,
+              newData: result.data,
               isSaving: false,
               hasSaved: true,
               hasError: false,
@@ -160,10 +169,10 @@ const ContactForm = (props) => {
               error: err,
             });
           });
-        return undefined;
+        return undefined; // This function just updates the state without returning anything. Idk if this is "best practice" or whatever but here we are.
       }
     } else {
-      return undefined;
+      return undefined; // This function just updates the state without returning anything. Idk if this is "best practice" or whatever but here we are.
     }
   };
 
@@ -171,8 +180,9 @@ const ContactForm = (props) => {
     <>
       <Content style={{ overflowX: "auto" }}>
         {Object.entries(state.newData).map((thisPair) => {
+          // Iterates over the key/value pairs and creates a form field for each. This should allow for new contact key/value pairs to be rapidly added with minimal code changes. On the flipside, iterating over an object doesn't preserve the order the form fields render. Using a Map data structure could be an alternative way to preserve some kind of order. Regardless, cementing an order the form fields should render is something I'd do before deploying this app to production. Handling the form fields in this way also sets the stage for custom form fields to be added, if that were on the roadmap for this app.
           const [key, value] = thisPair;
-          const exclusions = ["id"];
+          const exclusions = ["id"]; // Don't render a form field for the contact's id.
 
           if (exclusions.includes(key))
             return (
@@ -211,6 +221,7 @@ const ContactForm = (props) => {
       </Content>
       <Button
         disabled={Object.keys(state.data).every(
+          // If no fields have changed since the initial render or since the contact was saved/updated then don't allow the user to spam click the save/update button again.
           (thisKey) => state.data[thisKey] === state.newData[thisKey]
         )}
         onClick={(e) => {
