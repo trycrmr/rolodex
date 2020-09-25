@@ -26,7 +26,7 @@ const ContactView = (props) => {
   const handleDelete = () => {
     if (
       confirm(
-        `Are you sure you want to delete ${props.data.name} from you contacts?`
+        `Are you sure you want to delete ${props.data.name} from your contacts?`
       )
     ) {
       axios
@@ -42,6 +42,7 @@ const ContactView = (props) => {
           });
         })
         .catch((err) => {
+          console.info(JSON.stringify(err, null, 1));
           setState({
             ...state,
             isDeleting: false,
@@ -61,7 +62,11 @@ const ContactView = (props) => {
     <>
       <Box style={{ minWidth: "fit-content" }}>
         <Section>
-          {props.delete ? (
+          {state.hasBeenDeleted ? (
+            <Button onClick={() => handleDelete()} disabled={true}>
+              Delete Contact
+            </Button>
+          ) : props.delete ? (
             <Button onClick={() => handleDelete()}>Delete Contact</Button>
           ) : (
             <Link to={`/edit/${props.data.id}`}>
