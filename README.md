@@ -12,7 +12,7 @@ Open new issues on https://github.com/trycrmr/rolodex/issues
 2. `npm install` to install dependencies
 3. `npm start` to run the client\*. Default port is 3001. `npm test` will run the test suite.
 
-\*Of note: The server is only configured for development at this time. `npm test` will run the test suite.
+\*Of note: The server is only configured for development at this time.
 
 ### Running the server
 
