@@ -1,0 +1,17 @@
+{
+  "name": "arcadia-exercise",
+  "version": "0.0.1",
+  "description": "Front End Exercise for Arcadia Power",
+  "private": true,
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "4.16.3",
+    "faker": "^4.1.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "node-fetch": "^2.6.0"
+  }
+}

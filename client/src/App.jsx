@@ -1,4 +1,4 @@
-import { hot } from "react-hot-loader/root";
+// import { hot } from "react-hot-loader/root";
 import React from "react";
 import Nav from "./Nav.jsx";
 import { Container } from "react-bulma-components";
@@ -12,4 +12,4 @@ const App = (props) => {
   );
 };
 
-export default hot(App);
+export default App;

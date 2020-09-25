@@ -1,6 +1,6 @@
 import React from "react";
 import ContactEdit from "../ContactEdit";
-import { useRouteMatch, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Edit = () => {

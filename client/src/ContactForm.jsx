@@ -35,7 +35,6 @@ const ContactForm = (props) => {
       phone: {
         tests: [
           (phone) => {
-            console.info(phone);
             return phone.replaceAll("-", "").trim().length >= 7 ? true : false;
           },
         ],
@@ -121,7 +120,10 @@ const ContactForm = (props) => {
       if (!props.data) {
         // Cheap way of determining whether this contact form is adding a new user or updating an existing user. If no data is passed it means it's assing a new user.
         axios
-          .post(`/contacts`, state.newData) // Before deploying this application to production more work should be done, either server-side or client-side, to sanitize this user input before it's persisted in a data store.
+          .post(
+            `http://${process.env.REACT_APP_LOCAL_API_ENDPOINT}/contacts`,
+            state.newData
+          ) // Before deploying this application to production more work should be done, either server-side or client-side, to sanitize this user input before it's persisted in a data store.
           .then((result) => {
             dispatch(updateContact(result.data));
             setState({
@@ -146,7 +148,10 @@ const ContactForm = (props) => {
           });
       } else {
         axios // Performing the network call in the component 1) because the data should persist server side before indicating to the user it has saved/updated, and 2) so the interface will adjust accordingly given the state of the network call represented in the component state without having to prop drill from the redux app state.
-          .put(`/contacts/${state.newData.id}`, state.newData) // Before deploying this application to production more work should be done, either server-side or client-side, to sanitize this user input before it's persisted in a data store.
+          .put(
+            `http://${process.env.REACT_APP_LOCAL_API_ENDPOINT}/contacts/${state.newData.id}`,
+            state.newData
+          ) // Before deploying this application to production more work should be done, either server-side or client-side, to sanitize this user input before it's persisted in a data store.
           .then((result) => {
             dispatch(updateContact(result.data));
             // Completely replaces the state with the new contact info that is persisted. This will also disable the "Save Contact" button because the data & newData objects are the same.
@@ -196,7 +201,7 @@ const ContactForm = (props) => {
                   <Form.Input
                     type={inputTypeMapping[key]}
                     placeholder={key}
-                    value={state.newData[key]}
+                    value={value}
                     onChange={(e) => {
                       let newData = { ...state.newData };
                       newData[key] = e.target.value;

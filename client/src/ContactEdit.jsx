@@ -3,13 +3,9 @@ import {
   Box,
   Section,
   Image,
-  Form,
   Hero,
   Heading,
   Media,
-  Content,
-  Button,
-  Input,
 } from "react-bulma-components";
 import ContactForm from "./ContactForm";
 

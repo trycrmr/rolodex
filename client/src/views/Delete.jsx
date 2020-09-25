@@ -1,6 +1,6 @@
 import React from "react";
 import ContactView from "../ContactView";
-import { useRouteMatch, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 const View = () => {
   let { contactId } = useParams();

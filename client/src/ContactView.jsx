@@ -25,12 +25,12 @@ const ContactView = (props) => {
   });
   const handleDelete = () => {
     if (
-      confirm(
+      window.confirm(
         `Are you sure you want to delete ${props.data.name} from your contacts?`
-      )
+      ) // I went with this because it was a quick way to force a confirmation from the user and didn't require any effort or design from a interface perspective. I *think* it could cause issues if server-side rendering was something in this app's future, and using the default browser look probably would inspire shade from other stakeholders using the app.
     ) {
       axios
-        .delete(`/contacts/${props.data.id}`)
+        .delete(`http://${process.env.REACT_APP_LOCAL_API_ENDPOINT}/contacts/${props.data.id}`)
         .then((result) => {
           dispatch(deleteContact(props.data.id));
           setState({

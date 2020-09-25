@@ -1,8 +1,8 @@
-const fetch = require('node-fetch');
-const faker = require('faker');
+const fetch = require("node-fetch");
+const faker = require("faker");
 
-const baseRoute = 'http://localhost:3001/contacts';
-const headers = { 'Content-Type': 'application/json' };
+const baseRoute = "http://localhost:3001/contacts";
+const headers = { "Content-Type": "application/json" };
 
 /*
   NB:
@@ -10,7 +10,7 @@ const headers = { 'Content-Type': 'application/json' };
   This test expects the server to be running, and running on 3001.
 */
 
-describe('acceptance test', () => {
+describe("acceptance test", () => {
   let contacts;
 
   beforeEach(async () => {
@@ -19,8 +19,8 @@ describe('acceptance test', () => {
     contacts = data;
   });
 
-  describe('GET /contacts', () => {
-    test('returns all', async () => {
+  describe("GET /contacts", () => {
+    test("returns all", async () => {
       const result = await fetch(baseRoute);
       const data = await result.json();
       expect(data.length).toBeGreaterThan(0);
@@ -28,8 +28,8 @@ describe('acceptance test', () => {
     });
   });
 
-  describe('GET /contacts/:id', () => {
-    test('returns one', async () => {
+  describe("GET /contacts/:id", () => {
+    test("returns one", async () => {
       const [contact] = contacts;
       const result = await fetch(`${baseRoute}/${contact.id}`);
       const data = await result.json();
@@ -37,15 +37,15 @@ describe('acceptance test', () => {
     });
   });
 
-  describe('POST /contacts', () => {
-    test('creates', async () => {
+  describe("POST /contacts", () => {
+    test("creates", async () => {
       const contact = {
         name: faker.name.findName(),
         email: faker.internet.exampleEmail(),
         phone: faker.phone.phoneNumberFormat(),
       };
       const result = await fetch(baseRoute, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify(contact),
         headers,
       });
@@ -57,24 +57,24 @@ describe('acceptance test', () => {
     });
   });
 
-  describe('UPDATE /contacts/:id', () => {
-    test('updates', async () => {
+  describe("UPDATE /contacts/:id", () => {
+    test("updates", async () => {
       const [contact] = contacts;
       const result = await fetch(`${baseRoute}/${contact.id}`, {
-        method: 'PUT',
-        body: JSON.stringify({ name: 'Petey Peppercorn' }),
+        method: "PUT",
+        body: JSON.stringify({ name: "Petey Peppercorn" }),
         headers,
       });
       const data = await result.json();
-      expect(data).toEqual({ ...contact, name: 'Petey Peppercorn' });
+      expect(data).toEqual({ ...contact, name: "Petey Peppercorn" });
     });
   });
 
-  describe('DELETE /contacts/:id', () => {
-    test('deletes', async () => {
+  describe("DELETE /contacts/:id", () => {
+    test("deletes", async () => {
       const [contact] = contacts;
       const result = await fetch(`${baseRoute}/${contact.id}`, {
-        method: 'DELETE',
+        method: "DELETE",
       });
       expect(result.status).toEqual(200);
     });
