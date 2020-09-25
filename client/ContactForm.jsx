@@ -12,7 +12,6 @@ const ContactForm = (props) => {
     id: "",
     email: "",
   };
-  // if (!props.data) props.data = { ...blankData };
   const initialState = {
     data: props.data ? { ...props.data } : { ...blankData },
     newData: props.data ? { ...props.data } : { ...blankData },
@@ -35,6 +34,7 @@ const ContactForm = (props) => {
       phone: {
         tests: [
           (phone) => {
+            console.info(phone);
             return phone.replaceAll("-", "").trim().length >= 7 ? true : false;
           },
         ],
@@ -47,7 +47,7 @@ const ContactForm = (props) => {
       email: {
         tests: [
           (email) => {
-            return email.indexOf("@") > 0 ? true : false;
+            return email.indexOf("@") >= 0 ? true : false;
           },
         ],
         helpMessage: 'Must have an "@" symbol.',
@@ -77,25 +77,37 @@ const ContactForm = (props) => {
     let thisSubmission = { ...state.newData };
     let verdict = Object.keys(thisSubmission)
       .map((thisKey) => {
-        return state.validations[thisKey].tests.map((thisValidation) => {
-          const thisVerdict = thisValidation(thisSubmission[thisKey]);
-          if (thisVerdict !== state.validations[thisKey].verdict) {
-            const newValidations = {
-              ...state.validations[thisKey],
-              verdict: thisVerdict,
-            };
-            setState({
-              ...state,
-              validations: { ...state.validations, [thisKey]: newValidations },
-            });
-          }
-          return thisVerdict;
-        });
+        return state.validations[thisKey].tests
+          .map((thisValidation) => {
+            const thisVerdict = thisValidation(thisSubmission[thisKey]);
+            console.info(
+              thisVerdict,
+              state.validations[thisKey].verdict,
+              thisVerdict !== state.validations[thisKey].verdict
+            );
+            if (thisVerdict !== state.validations[thisKey].verdict) {
+              setState({
+                ...state,
+                validations: {
+                  ...state.validations,
+                  [thisKey]: {
+                    ...state.validations[thisKey],
+                    verdict: thisVerdict,
+                  },
+                },
+              });
+            }
+            return thisVerdict;
+          })
+          .every((thisVerdictResult) => {
+            // Checks that all validation functions for a certain field return true
+            return thisVerdictResult ? true : false;
+          });
       })
-      .every((thisValidation) => {
-        return thisValidation ? true : false;
+      .every((thisVerdictResult) => {
+        // Checks that all validations functions for ALL fields return true
+        return thisVerdictResult ? true : false;
       });
-
     if (verdict) {
       setState({
         ...state,
