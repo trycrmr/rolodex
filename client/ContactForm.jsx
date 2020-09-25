@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Form, Content, Button } from "react-bulma-components";
-
-// Warning: Failed prop type: Invalid prop `type` of value `phone` supplied to `Input`, expected one of ["text","email","tel","password","number","search","color","date","time","datetime-local"].
+import { useDispatch } from "react-redux";
+import { updateContact } from "./appSlice";
+import axios from "axios";
 
 const ContactForm = (props) => {
+  const dispatch = useDispatch();
   const blankData = {
     name: "",
     phone: "",
@@ -14,7 +16,12 @@ const ContactForm = (props) => {
   const initialState = {
     data: { ...props.data },
     newData: { ...props.data },
+    hasSaved: false,
+    isSaving: false,
+    hasError: false,
+    error: null,
     validations: {
+      // I couldn't think of a form validation library off the top of my head so I wrote this. A battle-tested library should be used for this though so the edge cases of isEmail() or whatever form field are accounted for.
       name: {
         tests: [
           (name) => {
@@ -56,6 +63,7 @@ const ContactForm = (props) => {
   };
   const [state, setState] = useState(initialState);
   const inputTypeMapping = {
+    // Future possible mappings ["text","email","tel","password","number","search","color","date","time","datetime-local"]
     phone: "tel",
     name: "text",
     email: "email",
@@ -87,6 +95,40 @@ const ContactForm = (props) => {
       .every((thisValidation) => {
         return thisValidation ? true : false;
       });
+
+    if (verdict) {
+      setState({
+        ...state,
+        isSaving: true,
+        hasSaved: false,
+        hasError: false,
+        error: null,
+      });
+      axios
+        .put(`/contacts/${state.newData.id}`, state.newData)
+        .then((result) => {
+          dispatch(updateContact(result.data));
+          setState({
+            ...state,
+            isSaving: false,
+            hasSaved: true,
+            hasError: false,
+            error: null,
+          });
+        })
+        .catch((err) => {
+          setState({
+            ...state,
+            isSaving: false,
+            hasSaved: false,
+            hasError: true,
+            error: err,
+          });
+        });
+      return undefined;
+    } else {
+      return undefined;
+    }
   };
 
   return (
@@ -148,6 +190,19 @@ const ContactForm = (props) => {
       >
         Reset Form
       </Button>
+      {state.isSaving ? (
+        <Form.Help color="warning">Updating...</Form.Help>
+      ) : state.hasError ? (
+        <Form.Help color="danger">
+          There was an error: {state.error.message}
+        </Form.Help>
+      ) : state.hasSaved ? (
+        <Form.Help color="success">Saved!</Form.Help>
+      ) : (
+        <Form.Help style={{ visibility: "hidden" }}>
+          Hidden field to prevent layout shift.
+        </Form.Help>
+      )}
     </>
   );
 };

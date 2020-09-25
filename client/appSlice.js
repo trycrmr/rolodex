@@ -1,14 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 export const appSlice = createSlice({
   name: "app",
   initialState: {
-    data: { contacts: [], isFetching: false },
+    contacts: [],
+    isFetching: false,
     count: 0,
   },
   reducers: {
     updateContacts: (state, action) => {
-      state.data.contacts = action.payload;
+      state.contacts = action.payload;
+    },
+    updateContact: (state, action) => {
+      const newContactList = [
+        ...state.contacts.filter(
+          (thisContact) => thisContact.id !== action.payload.id
+        ),
+        action.payload,
+      ];
+      state = { ...state, contacts: newContactList };
     },
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
@@ -28,6 +37,7 @@ export const appSlice = createSlice({
 
 export const {
   updateContacts,
+  updateContact,
   increment,
   decrement,
   incrementByAmount,

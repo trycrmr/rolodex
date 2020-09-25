@@ -33,7 +33,7 @@ app.use("/dist", express.static(path.join(__dirname, "dist")));
 
 // populate a "DB" with 20 random contacts
 const contactsDB = new ContactsDB(
-  [...Array(20)].map((i) => ({
+  [...Array(1)].map((i) => ({
     name: faker.name.findName(),
     email: faker.internet.exampleEmail(),
     phone: faker.phone.phoneNumberFormat(),

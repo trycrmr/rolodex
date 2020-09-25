@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 const Edit = () => {
   let { contactId } = useParams();
-  const data = useSelector((state) => state.app.data.contacts).find(
+  const data = useSelector((state) => state.app.contacts).find(
     (thisContact) => thisContact.id === contactId
   );
 
