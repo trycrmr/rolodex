@@ -12,10 +12,10 @@ const ContactForm = (props) => {
     id: "",
     email: "",
   };
-  if (!props.data) props.data = { ...blankData };
+  // if (!props.data) props.data = { ...blankData };
   const initialState = {
-    data: { ...props.data },
-    newData: { ...props.data },
+    data: props.data ? { ...props.data } : { ...blankData },
+    newData: props.data ? { ...props.data } : { ...blankData },
     hasSaved: false,
     isSaving: false,
     hasError: false,
@@ -104,28 +104,52 @@ const ContactForm = (props) => {
         hasError: false,
         error: null,
       });
-      axios
-        .put(`/contacts/${state.newData.id}`, state.newData)
-        .then((result) => {
-          dispatch(updateContact(result.data));
-          setState({
-            ...state,
-            isSaving: false,
-            hasSaved: true,
-            hasError: false,
-            error: null,
+      if (!props.data) {
+        axios
+          .post(`/contacts`, state.newData)
+          .then((result) => {
+            dispatch(updateContact(result.data));
+            setState({
+              ...state,
+              isSaving: false,
+              hasSaved: true,
+              hasError: false,
+              error: null,
+            });
+          })
+          .catch((err) => {
+            setState({
+              ...state,
+              isSaving: false,
+              hasSaved: false,
+              hasError: true,
+              error: err,
+            });
           });
-        })
-        .catch((err) => {
-          setState({
-            ...state,
-            isSaving: false,
-            hasSaved: false,
-            hasError: true,
-            error: err,
+      } else {
+        axios
+          .put(`/contacts/${state.newData.id}`, state.newData)
+          .then((result) => {
+            dispatch(updateContact(result.data));
+            setState({
+              ...state,
+              isSaving: false,
+              hasSaved: true,
+              hasError: false,
+              error: null,
+            });
+          })
+          .catch((err) => {
+            setState({
+              ...state,
+              isSaving: false,
+              hasSaved: false,
+              hasError: true,
+              error: err,
+            });
           });
-        });
-      return undefined;
+        return undefined;
+      }
     } else {
       return undefined;
     }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Section,
@@ -11,18 +11,77 @@ import {
   Button,
 } from "react-bulma-components";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { deleteContact } from "./appSlice";
+import { useDispatch } from "react-redux";
 
 const ContactView = (props) => {
+  const dispatch = useDispatch();
+  const [state, setState] = useState({
+    hasBeenDeleted: false,
+    isDeleting: false,
+    error: false,
+    hasError: false,
+  });
+  const handleDelete = () => {
+    if (
+      confirm(
+        `Are you sure you want to delete ${props.data.name} from you contacts?`
+      )
+    ) {
+      axios
+        .delete(`/contacts/${props.data.id}`)
+        .then((result) => {
+          dispatch(deleteContact(props.data.id));
+          setState({
+            ...state,
+            isDeleting: false,
+            hasBeenDeleted: true,
+            hasError: false,
+            error: null,
+          });
+        })
+        .catch((err) => {
+          setState({
+            ...state,
+            isDeleting: false,
+            hasBeenDeleted: false,
+            hasError: true,
+            error: err,
+          });
+          alert(
+            `There was a technical issue deleting ${props.data.name} (${err.message}. They are still in your contacts. Please try again another time and contact support if the issue persists.)`
+          );
+        });
+    } else {
+      return undefined; // do nothing
+    }
+  };
   return (
     <>
       <Box style={{ minWidth: "fit-content" }}>
         <Section>
-          <Link to={`/edit/${props.data.id}`}>
-            <Button>Update Contact</Button>
-          </Link>
+          {props.delete ? (
+            <Button onClick={() => handleDelete()}>Delete Contact</Button>
+          ) : (
+            <Link to={`/edit/${props.data.id}`}>
+              <Button>Update Contact</Button>
+            </Link>
+          )}
 
           <Hero>
-            <Heading style={{ textAlign: "center" }}>{props.data.name}</Heading>
+            {state.hasBeenDeleted ? (
+              <Heading
+                style={{ textAlign: "center", textDecoration: "line-through" }}
+              >
+                {props.data.name}
+              </Heading>
+            ) : (
+              <Heading style={{ textAlign: "center" }}>
+                {props.data.name}
+              </Heading>
+            )}
+
             <Media>
               <Media.Item position="left">
                 <Image

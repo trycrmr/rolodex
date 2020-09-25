@@ -10,7 +10,7 @@ const View = () => {
 
   return (
     <>
-      <ContactView data={data} delete={false} />
+      <ContactView data={data} delete={true} />
     </>
   );
 };

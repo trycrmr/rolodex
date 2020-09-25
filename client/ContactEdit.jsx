@@ -16,17 +16,14 @@ import ContactForm from "./ContactForm";
 // Warning: Failed prop type: Invalid prop `type` of value `phone` supplied to `Input`, expected one of ["text","email","tel","password","number","search","color","date","time","datetime-local"].
 
 const ContactEdit = (props) => {
-  const inputMapping = {
-    phone: "tel",
-    name: "text",
-    email: "email",
-  };
   return (
     <>
       <Box style={{ minWidth: "fit-content" }}>
         <Section>
           <Hero>
-            <Heading style={{ textAlign: "center" }}>{props.data.name}</Heading>
+            <Heading style={{ textAlign: "center" }}>
+              {props.data?.name ? props.data.name : "New Contact!"}
+            </Heading>
             <Media>
               <Media.Item position="left">
                 <Image
@@ -36,7 +33,7 @@ const ContactEdit = (props) => {
                 />
               </Media.Item>
               <Media.Item position="right" style={{ minWidth: "fit-content" }}>
-                <ContactForm data={props.data} />
+                <ContactForm data={props.data ? props.data : null} />
               </Media.Item>
             </Media>
           </Hero>

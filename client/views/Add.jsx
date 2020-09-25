@@ -1,8 +1,12 @@
 import React from "react";
-import PageLayout from "../PageLayout";
+import ContactEdit from "../ContactEdit";
 
 const Add = () => {
-  return <>Add</>;
+  return (
+    <>
+      <ContactEdit data={null} />
+    </>
+  );
 };
 
 export default Add;

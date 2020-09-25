@@ -19,6 +19,14 @@ export const appSlice = createSlice({
       ];
       state = { ...state, contacts: newContactList };
     },
+    deleteContact: (state, action) => {
+      const newContactList = [
+        ...state.contacts.filter(
+          (thisContact) => thisContact.id !== action.payload.id
+        ),
+      ];
+      state = { ...state, contacts: newContactList };
+    },
     increment: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
@@ -38,6 +46,7 @@ export const appSlice = createSlice({
 export const {
   updateContacts,
   updateContact,
+  deleteContact,
   increment,
   decrement,
   incrementByAmount,

@@ -4,6 +4,7 @@ import Edit from "./views/Edit.jsx";
 import View from "./views/View.jsx";
 import Home from "./views/Home.jsx";
 import Add from "./views/Add.jsx";
+import Delete from "./views/Delete.jsx";
 import { Navbar } from "react-bulma-components";
 import PageLayout from "./PageLayout";
 const Nav = () => {
@@ -37,7 +38,7 @@ const Nav = () => {
           </Route>
           <Route path="/delete/:contactId">
             <PageLayout>
-              <Add />
+              <Delete />
             </PageLayout>
           </Route>
           <Route path="/view/:contactId">

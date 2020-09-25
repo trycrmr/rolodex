@@ -33,15 +33,8 @@ const ContactCard = (props) => {
           <Card.Footer.Item renderAs="div" href="/edit">
             <Link to={`/edit/${props.data.id}`}>Edit</Link>
           </Card.Footer.Item>
-          <Card.Footer.Item
-            renderAs="a"
-            onClick={() =>
-              alert(
-                `Are you sure you want to remove ${props.data.name} from your contacts?`
-              )
-            }
-          >
-            Delete
+          <Card.Footer.Item renderAs="div" href="/delete">
+            <Link to={`/delete/${props.data.id}`}>Delete</Link>
           </Card.Footer.Item>
         </Card.Footer>
       </Card>
