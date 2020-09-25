@@ -28,7 +28,7 @@ const ContactForm = (props) => {
       phone: {
         tests: [
           (phone) => {
-            return phone.replace("-", "").length >= 7 ? true : false;
+            return phone.replaceAll("-", "").trim().length >= 7 ? true : false;
           },
         ],
         helpMessage:
@@ -76,11 +76,6 @@ const ContactForm = (props) => {
               ...state.validations[thisKey],
               verdict: thisVerdict,
             };
-            const newNewValidations = {
-              ...state.validations,
-              ...newValidations,
-            };
-            console.info(newValidations, newNewValidations);
             setState({
               ...state,
               validations: { ...state.validations, [thisKey]: newValidations },
