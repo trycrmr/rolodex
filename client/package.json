@@ -17,7 +17,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "swr": "^0.3.4",
-    "yup": "^0.29.3"
+    "yup": "^0.29.3",
+    "yup-phone": "^1.2.9"
   },
   "scripts": {
     "start": "REACT_APP_LOCAL_API_ENDPOINT=localhost:3001 react-scripts start",

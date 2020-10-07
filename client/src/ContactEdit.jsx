@@ -30,7 +30,7 @@ const ContactEdit = (props) => {
                 />
               </Media.Item>
               <Media.Item position="right" style={{ minWidth: "fit-content" }}>
-                <ContactFormFormik />
+                <ContactFormFormik data={props.data ? props.data : null} />
                 <hr />
                 <ContactForm data={props.data ? props.data : null} />
               </Media.Item>
