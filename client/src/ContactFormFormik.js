@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Form, Content, Button } from "react-bulma-components";
 import "yup-phone";
 import { useDispatch } from "react-redux";
+import { updateContact } from "./appSlice";
 import axios from "axios";
 
 const FormHelpMarginBottom = { marginBottom: "12px" };
@@ -13,7 +14,7 @@ const schema = Yup.object().shape({
   email: Yup.string()
     .required("Email is required.")
     .email("This email is invalid."),
-  phone: Yup.string()
+  phone: Yup.string() // Known issue if phone is an empty string the validation still runs https://github.com/abhisekp/yup-phone/issues/313 . Hence the .when and isPhoneBlank workaround.
     .required("Phone is required.")
     .when("isPhoneBlank", {
       is: false,
@@ -24,20 +25,15 @@ const schema = Yup.object().shape({
       ),
       otherwise: Yup.string(),
     }),
-  // .phone(undefined, undefined, "This phone number is invalid."), // Known issue if phone is an empty string the validation still runs https://github.com/abhisekp/yup-phone/issues/313
 });
 
 const ContactFormFormik = (props) => {
+  const dispatch = useDispatch();
   const blankData = {
     name: "",
     phone: "",
     id: "",
     email: "",
-  };
-  const initialState = {
-    order: ["name", "email", "phone"], // Maps to keys in data passed to the component
-    data: props.data ? { ...props.data } : { ...blankData },
-    newData: props.data ? { ...props.data } : { ...blankData },
   };
   return (
     <>
@@ -82,6 +78,9 @@ const ContactFormFormik = (props) => {
                   `http://${process.env.REACT_APP_LOCAL_API_ENDPOINT}/contacts`,
                   valuesToSubmit
                 )
+                .then((result) => {
+                  dispatch(updateContact(result.data));
+                })
                 .catch((err) => {
                   actions.setFieldError("general", err.message);
                 }); // Before deploying this application to production more work should be done, either server-side or client-side, to sanitize this user input before it's persisted in a data store.; // Before deploying this application to production more work should be done, either server-side or client-side, to sanitize this user input before it's persisted in a data store.
@@ -92,19 +91,32 @@ const ContactFormFormik = (props) => {
               });
             } else {
               // Performing the network call in the component 1) because the data should persist server side before indicating to the user it has saved/updated, and 2) so the interface will adjust accordingly given the state of the network call represented in the component state without having to prop drill from the redux app state.
-              await axios
-                .put(
-                  `http://${process.env.REACT_APP_LOCAL_API_ENDPOINT}/contacts/${values.data.id}`,
-                  valuesToSubmit
-                )
-                .catch((err) => {
-                  actions.setFieldError("general", err.message);
-                }); // Before deploying this application to production more work should be done, either server-side or client-side, to sanitize this user input before it's persisted in a data store.
-              actions.setStatus({
-                ...values.status,
-                hasSaved: true,
-                lastSave: new Date(),
-              });
+              let hasNothingChanged = Object.entries(valuesToSubmit).every(
+                (thisPair) => {
+                  let [key, value] = thisPair;
+                  return value === props.data[key];
+                }
+              );
+              if (hasNothingChanged) {
+                // Do not bother saving because there haven't been any changes
+              } else {
+                await axios
+                  .put(
+                    `http://${process.env.REACT_APP_LOCAL_API_ENDPOINT}/contacts/${values.data.id}`,
+                    valuesToSubmit
+                  )
+                  .then((result) => {
+                    dispatch(updateContact(result.data));
+                  })
+                  .catch((err) => {
+                    actions.setFieldError("general", err.message);
+                  }); // Before deploying this application to production more work should be done, either server-side or client-side, to sanitize this user input before it's persisted in a data store.
+                actions.setStatus({
+                  ...values.status,
+                  hasSaved: true,
+                  lastSave: new Date(),
+                });
+              }
             }
             actions.setSubmitting(false);
           }}
@@ -122,6 +134,7 @@ const ContactFormFormik = (props) => {
             isSubmitting,
             status,
             setValues,
+            handleReset,
           }) => (
             <form onSubmit={handleSubmit}>
               {values.order.map((key) => {
@@ -184,11 +197,7 @@ const ContactFormFormik = (props) => {
               <Button type="submit" disabled={Object.keys(errors).length > 0}>
                 Save Contact
               </Button>
-              <Button
-                onClick={() => {
-                  alert("Reset button click.");
-                }}
-              >
+              <Button type="button" onClick={handleReset}>
                 Reset Form
               </Button>
               {isSubmitting ? (

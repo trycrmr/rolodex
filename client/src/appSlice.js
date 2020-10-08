@@ -14,20 +14,20 @@ export const appSlice = createSlice({
     },
     updateContact: (state, action) => {
       const newContactList = [
-        ...state.contacts.filter(
-          (thisContact) => thisContact.id !== action.payload.id
-        ),
+        ...state.contacts.filter((thisContact) => {
+          return thisContact.id !== action.payload.id;
+        }),
         action.payload,
       ];
-      state = { ...state, contacts: newContactList };
+      state.contacts = newContactList;
     },
     deleteContact: (state, action) => {
       const newContactList = [
         ...state.contacts.filter(
-          (thisContact) => thisContact.id !== action.payload.id
+          (thisContact) => thisContact.id !== action.payload // Payload only contains the id
         ),
       ];
-      state = { ...state, contacts: newContactList };
+      state.contacts = newContactList;
     },
   },
 });

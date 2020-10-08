@@ -7,7 +7,6 @@ import {
   Heading,
   Media,
 } from "react-bulma-components";
-import ContactForm from "./ContactForm";
 import ContactFormFormik from "./ContactFormFormik";
 
 // Warning: Failed prop type: Invalid prop `type` of value `phone` supplied to `Input`, expected one of ["text","email","tel","password","number","search","color","date","time","datetime-local"].
@@ -31,8 +30,6 @@ const ContactEdit = (props) => {
               </Media.Item>
               <Media.Item position="right" style={{ minWidth: "fit-content" }}>
                 <ContactFormFormik data={props.data ? props.data : null} />
-                <hr />
-                <ContactForm data={props.data ? props.data : null} />
               </Media.Item>
             </Media>
           </Hero>

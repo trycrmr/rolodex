@@ -22,17 +22,20 @@ const ContactView = (props) => {
     isDeleting: false,
     error: false,
     hasError: false,
+    data: props.data,
   });
   const handleDelete = () => {
     if (
       window.confirm(
-        `Are you sure you want to delete ${props.data.name} from your contacts?`
+        `Are you sure you want to delete ${state.data.name} from your contacts?`
       ) // I went with this because it was a quick way to force a confirmation from the user and didn't require any effort or design from a interface perspective. I *think* it could cause issues if server-side rendering was something in this app's future, and using the default browser look probably would inspire shade from other stakeholders using the app.
     ) {
       axios
-        .delete(`http://${process.env.REACT_APP_LOCAL_API_ENDPOINT}/contacts/${props.data.id}`)
+        .delete(
+          `http://${process.env.REACT_APP_LOCAL_API_ENDPOINT}/contacts/${state.data.id}`
+        )
         .then((result) => {
-          dispatch(deleteContact(props.data.id));
+          dispatch(deleteContact(state.data.id));
           setState({
             ...state,
             isDeleting: false,
@@ -51,7 +54,7 @@ const ContactView = (props) => {
             error: err,
           });
           alert(
-            `There was a technical issue deleting ${props.data.name} (${err.message}. They are still in your contacts. Please try again another time and contact support if the issue persists.)`
+            `There was a technical issue deleting ${state.data.name} (${err.message}. They are still in your contacts. Please try again another time and contact support if the issue persists.)`
           );
         });
     } else {
@@ -69,7 +72,7 @@ const ContactView = (props) => {
           ) : props.delete ? (
             <Button onClick={() => handleDelete()}>Delete Contact</Button>
           ) : (
-            <Link to={`/edit/${props.data.id}`}>
+            <Link to={`/edit/${state.data.id}`}>
               <Button>Update Contact</Button>
             </Link>
           )}
@@ -79,11 +82,11 @@ const ContactView = (props) => {
               <Heading
                 style={{ textAlign: "center", textDecoration: "line-through" }}
               >
-                {props.data.name}
+                {state.data.name}
               </Heading>
             ) : (
               <Heading style={{ textAlign: "center" }}>
-                {props.data.name}
+                {state.data.name}
               </Heading>
             )}
 
@@ -97,7 +100,7 @@ const ContactView = (props) => {
               </Media.Item>
               <Media.Item position="right" style={{ minWidth: "fit-content" }}>
                 <Content style={{ overflowX: "auto" }}>
-                  {Object.entries(props.data).map((thisPair) => {
+                  {Object.entries(state.data).map((thisPair) => {
                     const [key, value] = thisPair;
                     const exclusions = ["name", "id"];
                     if (exclusions.includes(key))
