@@ -1,5 +1,5 @@
 import React from "react";
-import ContactList from "../ContactList";
+import ContactList from "../features/ContactList";
 import useSWR from "swr";
 import { useDispatch } from "react-redux";
 import { updateContacts } from "../appSlice";
