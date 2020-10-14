@@ -12,7 +12,7 @@ import {
 } from "react-bulma-components";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { deleteContact } from "./appSlice";
+import { deleteContact } from "../../slices/appSlice";
 import { useDispatch } from "react-redux";
 
 const ContactView = (props) => {

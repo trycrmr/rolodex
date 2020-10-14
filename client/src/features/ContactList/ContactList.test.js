@@ -18,38 +18,40 @@ const mockData = [
   },
 ];
 
-test("renders properly with no contacts", () => {
-  expect(
-    renderer
-      .create(
-        <MemoryRouter>
-          <ContactList data={[]} />
-        </MemoryRouter>
-      )
-      .toJSON()
-  ).toMatchSnapshot();
-});
+describe("The Contact List component", () => {
+  test("renders properly with no contacts", () => {
+    expect(
+      renderer
+        .create(
+          <MemoryRouter>
+            <ContactList data={[]} />
+          </MemoryRouter>
+        )
+        .toJSON()
+    ).toMatchSnapshot();
+  });
 
-test("renders properly with one contact", () => {
-  expect(
-    renderer
-      .create(
-        <MemoryRouter>
-          <ContactList data={[mockData[0]]} />
-        </MemoryRouter>
-      )
-      .toJSON()
-  ).toMatchSnapshot();
-});
+  test("renders properly with one contact", () => {
+    expect(
+      renderer
+        .create(
+          <MemoryRouter>
+            <ContactList data={[mockData[0]]} />
+          </MemoryRouter>
+        )
+        .toJSON()
+    ).toMatchSnapshot();
+  });
 
-test("renders properly with two contacts", () => {
-  expect(
-    renderer
-      .create(
-        <MemoryRouter>
-          <ContactList data={mockData} />
-        </MemoryRouter>
-      )
-      .toJSON()
-  ).toMatchSnapshot();
+  test("renders properly with two contacts", () => {
+    expect(
+      renderer
+        .create(
+          <MemoryRouter>
+            <ContactList data={mockData} />
+          </MemoryRouter>
+        )
+        .toJSON()
+    ).toMatchSnapshot();
+  });
 });

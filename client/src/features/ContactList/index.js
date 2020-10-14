@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Columns, Heading } from "react-bulma-components";
-import ContactCard from "../../ContactCard.jsx";
+import ContactCard from "../../components/ContactCard";
 import { Link } from "react-router-dom";
 const ContactList = (props) => {
   // I was going for a "business card" look for this contacts with the bulma react components :-) .

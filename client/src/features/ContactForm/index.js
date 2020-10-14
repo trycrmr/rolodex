@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { Form, Content, Button } from "react-bulma-components";
 import "yup-phone";
 import { useDispatch } from "react-redux";
-import { updateContact } from "./appSlice";
+import { updateContact } from "../../slices/appSlice";
 import axios from "axios";
 
 const FormHelpMarginBottom = { marginBottom: "12px" };

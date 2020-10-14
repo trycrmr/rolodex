@@ -1,5 +1,5 @@
 import React from "react";
-import ContactView from "../ContactView";
+import ContactView from "../features/ContactView";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 const View = () => {

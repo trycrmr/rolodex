@@ -1,5 +1,5 @@
 import React from "react";
-import ContactEdit from "../ContactEdit";
+import ContactEdit from "../features/ContactEdit";
 
 const Add = () => {
   return (
