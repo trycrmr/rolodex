@@ -20,7 +20,7 @@ describe("The Contact Card component", () => {
     );
   });
 
-  test("should match snapshot", () => {
+  it("should match snapshot", () => {
     // validates fields and links render as expected given the dataset
     expect(
       renderer
