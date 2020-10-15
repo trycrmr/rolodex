@@ -136,7 +136,7 @@ const ContactFormFormik = (props) => {
             setValues,
             handleReset,
           }) => (
-            <form onSubmit={handleSubmit}>
+            <form name="contact" onSubmit={handleSubmit}>
               {values.order.map((key) => {
                 return (
                   <div key={`key:${key}`}>
@@ -165,6 +165,7 @@ const ContactFormFormik = (props) => {
                           onBlur={handleBlur}
                           value={values[key]}
                           name={key}
+                          id={key}
                         />
                       </Form.Field>
                     </Form.Control>
@@ -201,19 +202,27 @@ const ContactFormFormik = (props) => {
                 Reset Form
               </Button>
               {isSubmitting ? (
-                <Form.Help color="warning">Updating...</Form.Help>
+                <Form.Help color="warning">
+                  <span role="note">Updating...</span>
+                </Form.Help>
               ) : errors.general ? (
                 <Form.Help color="danger">
-                  There was an error: {errors.general}
+                  <span role="alert">There was an error: {errors.general}</span>
                 </Form.Help>
               ) : status.hasSaved ? (
                 <Form.Help color="success">
-                  Saved!{" "}
-                  {`(${status.lastSave.toLocaleTimeString()} ${status.lastSave.toLocaleDateString()})`}
+                  <span role="status">
+                    Saved!{" "}
+                    {`(${status.lastSave.toLocaleTimeString()} ${status.lastSave.toLocaleDateString()})`}
+                  </span>
                 </Form.Help>
               ) : (
-                <Form.Help style={{ visibility: "hidden" }}>
-                  Hidden field to prevent layout shift.
+                <Form.Help
+                // style={{ visibility: "hidden" }}
+                >
+                  <span role="note" style={{ color: "white" }}>
+                    Hidden field to prevent layout shift.
+                  </span>
                 </Form.Help>
               )}
             </form>
