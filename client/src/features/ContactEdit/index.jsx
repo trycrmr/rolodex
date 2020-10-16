@@ -7,7 +7,7 @@ import {
   Heading,
   Media,
 } from "react-bulma-components";
-import ContactForm from "./ContactForm";
+import ContactForm from "../../features/ContactForm";
 
 // Warning: Failed prop type: Invalid prop `type` of value `phone` supplied to `Input`, expected one of ["text","email","tel","password","number","search","color","date","time","datetime-local"].
 

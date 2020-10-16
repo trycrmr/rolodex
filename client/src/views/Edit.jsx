@@ -1,5 +1,5 @@
 import React from "react";
-import ContactEdit from "../ContactEdit";
+import ContactEdit from "../features/ContactEdit";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 

@@ -1,8 +1,8 @@
 import React from "react";
-import ContactList from "../ContactList";
+import ContactList from "../features/ContactList";
 import useSWR from "swr";
 import { useDispatch } from "react-redux";
-import { updateContacts } from "../appSlice";
+import { updateContacts } from "../slices/appSlice";
 const Home = () => {
   // This app would absolutely need some sort of auth layer to prevent user's from seeing other user's contacts. Would have to do that before deploying to production and some sort of auth check would happen somewhere around here before requesting the user's contacts.
   const dispatch = useDispatch();

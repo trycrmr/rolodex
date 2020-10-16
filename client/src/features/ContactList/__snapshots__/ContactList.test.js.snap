@@ -1,0 +1,719 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Contact List component renders properly with no contacts 1`] = `
+<div
+  className="box"
+  style={
+    Object {
+      "margin": "auto",
+    }
+  }
+>
+  <h1
+    className="title"
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    You don't have any contacts; Why not 
+    <a
+      href="/add"
+      onClick={[Function]}
+    >
+      add one
+    </a>
+    ?
+  </h1>
+</div>
+`;
+
+exports[`The Contact List component renders properly with one contact 1`] = `
+<div
+  className="box"
+  style={
+    Object {
+      "margin": "auto",
+    }
+  }
+>
+  <div
+    className="columns is-tablet is-multiline"
+    style={
+      Object {
+        "backgroundColor": "whitesmoke",
+      }
+    }
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="card"
+        style={
+          Object {
+            "margin": "auto",
+            "maxWidth": "500px",
+          }
+        }
+      >
+        <div
+          className="card-content"
+        >
+          <article
+            className="media"
+            position="right"
+          >
+            <figure
+              className="media-left"
+            >
+              <figure
+                className="image is-128x128"
+              >
+                <img
+                  alt="128x128"
+                  className=""
+                  onError={[Function]}
+                  src="http://bulma.io/images/placeholders/128x128.png"
+                />
+              </figure>
+            </figure>
+            <div
+              className="media-content"
+              style={
+                Object {
+                  "margin": "auto",
+                  "textAlign": "center",
+                }
+              }
+            >
+              <h1
+                className="title is-6"
+              >
+                Milan Jenkins
+              </h1>
+              <div
+                className="content"
+              >
+                Kristian_Deckow@example.org
+                <br />
+                330-013-0169
+              </div>
+            </div>
+          </article>
+        </div>
+        <div
+          className="card-footer"
+        >
+          <div
+            className="card-footer-item"
+            href="/view"
+          >
+            <a
+              href="/view/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              View
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/edit"
+          >
+            <a
+              href="/edit/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              Edit
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/delete"
+          >
+            <a
+              href="/delete/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              Delete
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`The Contact List component renders properly with two contacts 1`] = `
+<div
+  className="box"
+  style={
+    Object {
+      "margin": "auto",
+    }
+  }
+>
+  <div
+    className="columns is-tablet is-multiline"
+    style={
+      Object {
+        "backgroundColor": "whitesmoke",
+      }
+    }
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="card"
+        style={
+          Object {
+            "margin": "auto",
+            "maxWidth": "500px",
+          }
+        }
+      >
+        <div
+          className="card-content"
+        >
+          <article
+            className="media"
+            position="right"
+          >
+            <figure
+              className="media-left"
+            >
+              <figure
+                className="image is-128x128"
+              >
+                <img
+                  alt="128x128"
+                  className=""
+                  onError={[Function]}
+                  src="http://bulma.io/images/placeholders/128x128.png"
+                />
+              </figure>
+            </figure>
+            <div
+              className="media-content"
+              style={
+                Object {
+                  "margin": "auto",
+                  "textAlign": "center",
+                }
+              }
+            >
+              <h1
+                className="title is-6"
+              >
+                Milan Jenkins
+              </h1>
+              <div
+                className="content"
+              >
+                Kristian_Deckow@example.org
+                <br />
+                330-013-0169
+              </div>
+            </div>
+          </article>
+        </div>
+        <div
+          className="card-footer"
+        >
+          <div
+            className="card-footer-item"
+            href="/view"
+          >
+            <a
+              href="/view/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              View
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/edit"
+          >
+            <a
+              href="/edit/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              Edit
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/delete"
+          >
+            <a
+              href="/delete/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              Delete
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="column"
+    >
+      <div
+        className="card"
+        style={
+          Object {
+            "margin": "auto",
+            "maxWidth": "500px",
+          }
+        }
+      >
+        <div
+          className="card-content"
+        >
+          <article
+            className="media"
+            position="right"
+          >
+            <figure
+              className="media-left"
+            >
+              <figure
+                className="image is-128x128"
+              >
+                <img
+                  alt="128x128"
+                  className=""
+                  onError={[Function]}
+                  src="http://bulma.io/images/placeholders/128x128.png"
+                />
+              </figure>
+            </figure>
+            <div
+              className="media-content"
+              style={
+                Object {
+                  "margin": "auto",
+                  "textAlign": "center",
+                }
+              }
+            >
+              <h1
+                className="title is-6"
+              >
+                Dr. Fletcher Doyle
+              </h1>
+              <div
+                className="content"
+              >
+                Bernadine_Mitchell@example.net
+                <br />
+                213-585-2178
+              </div>
+            </div>
+          </article>
+        </div>
+        <div
+          className="card-footer"
+        >
+          <div
+            className="card-footer-item"
+            href="/view"
+          >
+            <a
+              href="/view/1e580e71-c00e-4dad-9692-bbe1b6e93e37"
+              onClick={[Function]}
+            >
+              View
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/edit"
+          >
+            <a
+              href="/edit/1e580e71-c00e-4dad-9692-bbe1b6e93e37"
+              onClick={[Function]}
+            >
+              Edit
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/delete"
+          >
+            <a
+              href="/delete/1e580e71-c00e-4dad-9692-bbe1b6e93e37"
+              onClick={[Function]}
+            >
+              Delete
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders properly with no contacts 1`] = `
+<div
+  className="box"
+  style={
+    Object {
+      "margin": "auto",
+    }
+  }
+>
+  <h1
+    className="title"
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    You don't have any contacts; Why not 
+    <a
+      href="/add"
+      onClick={[Function]}
+    >
+      add one
+    </a>
+    ?
+  </h1>
+</div>
+`;
+
+exports[`renders properly with one contact 1`] = `
+<div
+  className="box"
+  style={
+    Object {
+      "margin": "auto",
+    }
+  }
+>
+  <div
+    className="columns is-tablet is-multiline"
+    style={
+      Object {
+        "backgroundColor": "whitesmoke",
+      }
+    }
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="card"
+        style={
+          Object {
+            "margin": "auto",
+            "maxWidth": "500px",
+          }
+        }
+      >
+        <div
+          className="card-content"
+        >
+          <article
+            className="media"
+            position="right"
+          >
+            <figure
+              className="media-left"
+            >
+              <figure
+                className="image is-128x128"
+              >
+                <img
+                  alt="128x128"
+                  className=""
+                  onError={[Function]}
+                  src="http://bulma.io/images/placeholders/128x128.png"
+                />
+              </figure>
+            </figure>
+            <div
+              className="media-content"
+              style={
+                Object {
+                  "margin": "auto",
+                  "textAlign": "center",
+                }
+              }
+            >
+              <h1
+                className="title is-6"
+              >
+                Milan Jenkins
+              </h1>
+              <div
+                className="content"
+              >
+                Kristian_Deckow@example.org
+                <br />
+                330-013-0169
+              </div>
+            </div>
+          </article>
+        </div>
+        <div
+          className="card-footer"
+        >
+          <div
+            className="card-footer-item"
+            href="/view"
+          >
+            <a
+              href="/view/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              View
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/edit"
+          >
+            <a
+              href="/edit/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              Edit
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/delete"
+          >
+            <a
+              href="/delete/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              Delete
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`renders properly with two contacts 1`] = `
+<div
+  className="box"
+  style={
+    Object {
+      "margin": "auto",
+    }
+  }
+>
+  <div
+    className="columns is-tablet is-multiline"
+    style={
+      Object {
+        "backgroundColor": "whitesmoke",
+      }
+    }
+  >
+    <div
+      className="column"
+    >
+      <div
+        className="card"
+        style={
+          Object {
+            "margin": "auto",
+            "maxWidth": "500px",
+          }
+        }
+      >
+        <div
+          className="card-content"
+        >
+          <article
+            className="media"
+            position="right"
+          >
+            <figure
+              className="media-left"
+            >
+              <figure
+                className="image is-128x128"
+              >
+                <img
+                  alt="128x128"
+                  className=""
+                  onError={[Function]}
+                  src="http://bulma.io/images/placeholders/128x128.png"
+                />
+              </figure>
+            </figure>
+            <div
+              className="media-content"
+              style={
+                Object {
+                  "margin": "auto",
+                  "textAlign": "center",
+                }
+              }
+            >
+              <h1
+                className="title is-6"
+              >
+                Milan Jenkins
+              </h1>
+              <div
+                className="content"
+              >
+                Kristian_Deckow@example.org
+                <br />
+                330-013-0169
+              </div>
+            </div>
+          </article>
+        </div>
+        <div
+          className="card-footer"
+        >
+          <div
+            className="card-footer-item"
+            href="/view"
+          >
+            <a
+              href="/view/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              View
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/edit"
+          >
+            <a
+              href="/edit/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              Edit
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/delete"
+          >
+            <a
+              href="/delete/e12970f9-1deb-48a2-a4c2-854d86a82ef0"
+              onClick={[Function]}
+            >
+              Delete
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="column"
+    >
+      <div
+        className="card"
+        style={
+          Object {
+            "margin": "auto",
+            "maxWidth": "500px",
+          }
+        }
+      >
+        <div
+          className="card-content"
+        >
+          <article
+            className="media"
+            position="right"
+          >
+            <figure
+              className="media-left"
+            >
+              <figure
+                className="image is-128x128"
+              >
+                <img
+                  alt="128x128"
+                  className=""
+                  onError={[Function]}
+                  src="http://bulma.io/images/placeholders/128x128.png"
+                />
+              </figure>
+            </figure>
+            <div
+              className="media-content"
+              style={
+                Object {
+                  "margin": "auto",
+                  "textAlign": "center",
+                }
+              }
+            >
+              <h1
+                className="title is-6"
+              >
+                Dr. Fletcher Doyle
+              </h1>
+              <div
+                className="content"
+              >
+                Bernadine_Mitchell@example.net
+                <br />
+                213-585-2178
+              </div>
+            </div>
+          </article>
+        </div>
+        <div
+          className="card-footer"
+        >
+          <div
+            className="card-footer-item"
+            href="/view"
+          >
+            <a
+              href="/view/1e580e71-c00e-4dad-9692-bbe1b6e93e37"
+              onClick={[Function]}
+            >
+              View
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/edit"
+          >
+            <a
+              href="/edit/1e580e71-c00e-4dad-9692-bbe1b6e93e37"
+              onClick={[Function]}
+            >
+              Edit
+            </a>
+          </div>
+          <div
+            className="card-footer-item"
+            href="/delete"
+          >
+            <a
+              href="/delete/1e580e71-c00e-4dad-9692-bbe1b6e93e37"
+              onClick={[Function]}
+            >
+              Delete
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
